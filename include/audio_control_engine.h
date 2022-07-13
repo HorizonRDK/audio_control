@@ -20,10 +20,10 @@
 #include <string>
 #include <vector>
 
-#include "audio_msg/msg/smart_audio.hpp"
-#include "geometry_msgs/msg/twist.hpp"
 #include "include/audio_control_node.h"
+#include "audio_msg/msg/smart_audio_data.hpp"
 #include "include/param_node.h"
+#include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 using geometry_msgs::msg::Twist;
@@ -35,7 +35,7 @@ class AudioControlEngine {
   ~AudioControlEngine();
 
  public:
-  void FeedSmart(const audio_msg::msg::SmartAudio::ConstSharedPtr &msg);
+  void FeedSmart(const audio_msg::msg::SmartAudioData::ConstSharedPtr &msg);
   std::vector<std::shared_ptr<rclcpp::Node>> GetNodes() {
     std::vector<std::shared_ptr<rclcpp::Node>> node_ptrs;
     node_ptrs.push_back(param_node_);
@@ -45,7 +45,7 @@ class AudioControlEngine {
 
  private:
   AudioControlEngine();
-  void ProcessSmart(const audio_msg::msg::SmartAudio::ConstSharedPtr &msg);
+  void ProcessSmart(const audio_msg::msg::SmartAudioData::ConstSharedPtr &msg);
   int ProcessCmdWord(const std::string cmd_word);
   int GetMoveCmd(const std::string cmd_word);
   // rotate robot
@@ -57,13 +57,13 @@ class AudioControlEngine {
   // push dest world position msg to queue, which will be pub using action
   void FeedMovePoseMsg(const Twist::SharedPtr &pose);
 
- private:
+  private:
   std::shared_ptr<ParametersClass> param_node_ = nullptr;
   std::shared_ptr<AudioControlNode> audio_control_node_ = nullptr;
   bool start_ = false;
 
   size_t queue_len_limit_ = 20;
-  std::queue<audio_msg::msg::SmartAudio::ConstSharedPtr> smart_queue_;
+  std::queue<audio_msg::msg::SmartAudioData::ConstSharedPtr> smart_queue_;
   std::mutex smart_queue_mtx_;
   std::condition_variable smart_queue_condition_;
 

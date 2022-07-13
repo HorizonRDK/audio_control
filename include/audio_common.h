@@ -27,6 +27,7 @@ typedef enum {
  * Smart Audio Frame TYPE
  */
 typedef enum {
+  Smart_Frame_Type_Unknow = 0,
   Smart_Frame_Type_Voip = 1,          // the audio after noise reduction
   Smart_Frame_Type_Event = 2,         // audio event
   Smart_Frame_Type_Cmd_word = 3,      // command word data
@@ -39,12 +40,13 @@ typedef enum {
  * EVNET TYPE
  */
 typedef enum {
-  Event_WkpNormal = 0,   // normal wakeup
-  Event_WkpOneshot,      // one shot wakeup
-  Event_WaitAsrTimeout,  // asr detect timeout
-  Event_VadBegin,        // vad begin
-  Event_VadMid,          // vad middle
-  Event_VadEnd           // vad end
+  Event_Unknow = 0,
+  Event_WkpNormal = 1,        // normal wakeup
+  Event_WkpOneshot = 2,      // one shot wakeup
+  Event_WaitAsrTimeout = 3,  // asr detect timeout
+  Event_VadBegin = 4,        // vad begin
+  Event_VadMid = 5,          // vad middle
+  Event_VadEnd = 6           // vad end
 } AudioEventType;
 
 struct SmartAudioFrame {
