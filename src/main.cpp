@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
   ss << "\n\tThis is audio control package.\n\n"
      << "============================================\n"
      << "\taudio control usage\n"
-     << "\nWake up device is \"精灵精灵\".\n"
+     << "\nWake up device is \"地平线你好\".\n"
      << "Audio control commnad word definitions are:\n"
      << "\t\"向前走\": move front. (close from controler)\n"
      << "\t\"向后退\": move back. (far from controler)\n"

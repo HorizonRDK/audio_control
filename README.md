@@ -9,7 +9,7 @@ audio_control package功能为通过语音命令词来控制机器人运动。
 ```
 {
     "cmd_word": [
-        "精灵精灵",
+        "地平线你好",
         "向前走",
         "向后退",
         "向左转",
@@ -156,7 +156,7 @@ sh config/audio.sh
 ============================================
         audio control usage
 
-Wake up device is "精灵精灵".
+Wake up device is "地平线你好".
 Audio control commnad word definitions are:
         "向前走": move front. (close from controler)
         "向后退": move back. (far from controler)
