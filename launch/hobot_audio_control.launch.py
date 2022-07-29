@@ -23,7 +23,7 @@ from ament_index_python import get_package_share_directory
 
 def generate_launch_description():
     return LaunchDescription([
-        # 启动人手关键点检测pkg
+        # 启动智能语音识别pkg
         Node(
             package='hobot_audio',
             executable='hobot_audio',
@@ -34,7 +34,7 @@ def generate_launch_description():
             ],
             arguments=['--ros-args', '--log-level', 'error']
         ),
-        # 启动手势交互pkg
+        # 启动语音控制pkg
         Node(
             package='audio_control',
             executable='audio_control',
