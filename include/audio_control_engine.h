@@ -70,6 +70,11 @@ class AudioControlEngine {
   std::shared_ptr<std::thread> smart_process_task_ = nullptr;
   bool last_ctrl_is_cancel_ = false;
   RobotMoveCfg move_cfg_;
+  
+  // 控制管理，当控制时长超过阈值，发布停止指令
+  std::shared_ptr<std::thread> ctrl_manage_task_ = nullptr;
+  std::mutex ctrl_manage_mtx_;
+  std::chrono::system_clock::time_point last_ctrl_tp;
 };
 
 #endif  // AUDIO_CONTROL_ENGINE_H

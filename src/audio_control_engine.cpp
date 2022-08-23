@@ -57,12 +57,48 @@ AudioControlEngine::AudioControlEngine() {
       CancelMove();
     });
   }
+  
+  RCLCPP_WARN(rclcpp::get_logger("audio_control"),
+              "control timeout: %d second",
+              move_cfg_.motion_duration_seconds);
+  if (move_cfg_.motion_duration_seconds > 0 && !ctrl_manage_task_) {
+    ctrl_manage_task_ = std::make_shared<std::thread>([this]() {
+      while (rclcpp::ok()) {
+        std::unique_lock<std::mutex> lg(ctrl_manage_mtx_);
+        if (last_ctrl_is_cancel_) {
+          lg.unlock();
+          std::this_thread::sleep_for(std::chrono::milliseconds(100));
+          continue;
+        } else {
+          auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(
+                              std::chrono::system_clock::now() - last_ctrl_tp)
+                              .count();
+          if (interval >= 1000 * move_cfg_.motion_duration_seconds) {
+            RCLCPP_WARN(rclcpp::get_logger("audio_control"),
+                        "Cancel move, control timeout: %d seconds",
+                        move_cfg_.motion_duration_seconds);
+            CancelMove();
+          } else {
+            lg.unlock();
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            continue;
+          }
+        }
+      }
+
+      CancelMove();
+    });
+  }
 }
 
 AudioControlEngine::~AudioControlEngine() {
   RCLCPP_INFO(rclcpp::get_logger("audio_control"),
               "AudioControlEngine deconstruct");
   start_ = false;
+  if (smart_process_task_ && smart_process_task_->joinable()) {
+    smart_process_task_->join();
+    smart_process_task_ = nullptr;
+  }
   if (smart_process_task_ && smart_process_task_->joinable()) {
     smart_process_task_->join();
     smart_process_task_ = nullptr;
@@ -149,6 +185,9 @@ void AudioControlEngine::DoMove(int direction,
                                 float move_step,
                                 float rotate_step) {
   last_ctrl_is_cancel_ = false;
+  std::unique_lock<std::mutex> lg(ctrl_manage_mtx_);
+  last_ctrl_tp = std::chrono::system_clock::now();
+  lg.unlock();
   RCLCPP_WARN(rclcpp::get_logger("audio_control"),
               "do move, direction: %d, step: %f, rotate step: %f",
               direction,
@@ -172,6 +211,9 @@ void AudioControlEngine::DoMove(int direction,
 
 void AudioControlEngine::DoRotate(int direction, float step) {
   last_ctrl_is_cancel_ = false;
+  std::unique_lock<std::mutex> lg(ctrl_manage_mtx_);
+  last_ctrl_tp = std::chrono::system_clock::now();
+  lg.unlock();
   RCLCPP_WARN(rclcpp::get_logger("audio_control"),
               "do rotate, direction: %d, step: %f",
               direction,

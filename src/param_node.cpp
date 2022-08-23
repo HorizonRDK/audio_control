@@ -25,6 +25,8 @@ ParametersClass::ParametersClass(RobotMoveCfg *cfg,
   if (cfg_) {
     this->declare_parameter<float>("move_step", cfg_->move_step);
     this->declare_parameter<float>("rotate_step", cfg_->rotate_step);
+    this->declare_parameter<int>("motion_duration_seconds", cfg_->motion_duration_seconds);
+    this->get_parameter("motion_duration_seconds", cfg_->motion_duration_seconds);
     timer_ = this->create_wall_timer(
         1000ms, std::bind(&ParametersClass::Respond, this));
   }
@@ -34,10 +36,12 @@ void ParametersClass::Respond() {
   if (!cfg_) return;
   this->get_parameter("move_step", cfg_->move_step);
   this->get_parameter("rotate_step", cfg_->rotate_step);
+  this->get_parameter("motion_duration_seconds", cfg_->motion_duration_seconds);
 
   std::stringstream ss;
   ss << "move_step: " << cfg_->move_step << std::endl;
   ss << "rotate_step: " << cfg_->rotate_step << std::endl;
+  ss << "motion_duration_seconds: " << cfg_->motion_duration_seconds << std::endl;
   if (first_dump_config_) {
     first_dump_config_ = false;
     RCLCPP_WARN(
