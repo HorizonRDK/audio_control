@@ -28,6 +28,7 @@ using SmartCbType = std::function<void(
 class AudioControlNode : public rclcpp::Node {
  public:
   AudioControlNode(const std::string &node_name, SmartCbType smart_cb);
+  ~AudioControlNode();
 
   void RobotCtl(const Twist &msg) const;
 

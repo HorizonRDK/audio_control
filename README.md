@@ -99,6 +99,8 @@ colcon build --packages-select audio_control \
 | twist_pub_topic_name  | std::string | 发布Twist类型的运动控制消息的topic名 | 否       | 根据实际部署环境配置。一般机器人订阅的topic为/cmd_vel，ROS2 turtlesim示例订阅的topic为turtle1/cmd_vel。 | /cmd_vel     | 否                     |
 | move_step             | float       | 平移运动的步长，单位米。             | 否       | 无限制                                                       | 0.5          | 是                     |
 | rotate_step           | float       | 旋转运动的步长，单位弧度。           | 否       | 无限制                                                       | 0.5          | 是                     |
+| motion_duration_seconds           | int       | 平移/旋转动作持续时间，单位秒，小于等于0表示不做限制，达到持续时间后下发停止运动指令，避免机器人一直运动           | 否       | 无限制                                                       | 0          | 否                     |
+
 
 ## 运行
 

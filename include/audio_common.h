@@ -118,6 +118,9 @@ typedef enum {
 struct RobotMoveCfg {
   float move_step = 0.3;
   float rotate_step = 0.5;
+  // 平移/旋转动作持续时间，单位秒，小于等于0表示不做限制
+  // 收到语音控制指令时重置计时并向机器人下发控制指令，达到持续时间后下发停止运动指令，避免机器人一直运动
+  int motion_duration_seconds = 0;
 };
 
 #endif

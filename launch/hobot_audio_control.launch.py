@@ -41,7 +41,8 @@ def generate_launch_description():
             output='screen',
             parameters=[
                 {"ai_msg_sub_topic_name": "/audio_smart"},
-                {"twist_pub_topic_name": "/cmd_vel"}
+                {"twist_pub_topic_name": "/cmd_vel"},
+                {"motion_duration_seconds": 0}
             ],
             arguments=['--ros-args', '--log-level', 'error']
         )

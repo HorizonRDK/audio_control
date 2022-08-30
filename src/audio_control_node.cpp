@@ -45,6 +45,18 @@ AudioControlNode::AudioControlNode(const std::string& node_name,
   twist_publisher_ = this->create_publisher<Twist>(twist_pub_topic_name_, 10);
 }
 
+AudioControlNode::~AudioControlNode() {
+  Twist msg;
+  msg.linear.x = 0;
+  msg.linear.y = 0;
+  msg.linear.z = 0;
+  msg.angular.x = 0;
+  msg.angular.y = 0;
+  msg.angular.z = 0;;
+  twist_publisher_->publish(msg);
+  RCLCPP_WARN(rclcpp::get_logger("AudioControlNode"), "Publish stop cmd");
+}
+
 void AudioControlNode::RobotCtl(const Twist& msg) const {
   // std::stringstream ss;
   // ss << "RobotCtl " << msg.angular.x
