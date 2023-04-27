@@ -119,7 +119,7 @@ cp -r install/lib/hobot_audio/config/ .
 bash config/audio.sh
 
 # 启动音频控制节点
-ros2 launch install/share/audio_control/launch/hobot_audio_control.launch.py
+ros2 launch install/share/audio_control/launch/audio_control.launch.py
 ```
 
 ### **Linux**
