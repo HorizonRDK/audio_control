@@ -144,8 +144,6 @@ sudo apt install -y tros-audio-control
 
 ### 运行功能
 
-运行语音追踪功能后，语音追踪控制模块会接收从智能语音功能模块发布的智能语音消息结果，并且解析消息，根据消息中的唤醒事件以及DOA角度信息发布控制小车转向某个方向特定角度的指令，当小车转向特定角度之后，继续控制小车前进一定距离（此模块默认控制小车前进0.2米的距离）。
-
 **1.启动仿真环境及机器人**
 
    在PC端Ubuntu的终端中使用如下命令启动Gazebo，并加载机器人模型：
@@ -183,7 +181,8 @@ sudo apt install -y tros-audio-control
 
    启动成功后，当用户说出 "*向前走*" "*向后退*" "*向左转*" "*向右转*" "*停止运动*" 等指令后，小车按照指令开始运动。
 
-   PC端仿真环境中语音追踪控制小车运动，效果如下[点击跳转](https://developer.horizon.ai/api/v1/fileData/documents_tros/app/car_audio_control.html)
+   PC端仿真环境中语音追踪控制小车运动，效果如下；
+   ![move](./imgs/move.gif)
 
 # 接口说明
 
