@@ -181,7 +181,7 @@ sudo apt install -y tros-audio-control
 
    启动成功后，当用户说出 "*向前走*" "*向后退*" "*向左转*" "*向右转*" "*停止运动*" 等指令后，小车按照指令开始运动。
 
-   PC端仿真环境中语音追踪控制小车运动，效果如下；
+   PC端仿真环境中语音控制小车运动，效果如下；
    ![move](./imgs/move.gif)
 
 # 接口说明
@@ -208,45 +208,32 @@ sudo apt install -y tros-audio-control
 
 # 常见问题
 
-1.Ubuntu下运行启动命令报错`-bash: ros2: command not found`
+1. Ubuntu下运行启动命令报错`-bash: ros2: command not found`
 
-当前终端未设置ROS2环境，执行命令配置环境：
+   当前终端未设置ROS2环境，执行命令配置环境：
 
-```bash
-export COLCON_CURRENT_PREFIX=./install
-source ./install/setup.bash
-```
+   ```bash
+   source /opt/tros/setup.bash
+   ```
 
-在当前终端执行ros2命令确认当前终端环境是否生效：
+   在当前终端执行ros2命令确认当前终端环境是否生效：
 
-```shell
-# ros2
-usage: ros2 [-h] Call `ros2 <command> -h` for more detailed usage. ...
+   ```shell
+   # ros2
+   usage: ros2 [-h] Call `ros2 <command> -h` for more detailed usage. ...
 
-ros2 is an extensible command-line tool for ROS 2.
+   ros2 is an extensible command-line tool for ROS 2.
 
-optional arguments:
-  -h, --help            show this help message and exit
-```
+   optional arguments:
+   -h, --help            show this help message and exit
+   ```
 
-如果输出以上信息，说明ros2环境配置成功。
+   如果输出以上信息，说明ros2环境配置成功。
 
-注意！对于每个新打开的终端，都需要重新设置ROS2环境。
+   注意：对于每个新打开的终端，都需要重新设置ROS2环境。
 
-2.终端无log信息输出
+2. 无法打开音频设备
 
-2.1确认launch文件中的node是否都启动成功
-
-重新开启一个终端（仅对Ubuntu系统有效），执行top命令查看launch文件中的node进程是否都在运行，否则使用ros2 run命令单独启动相关node确认启动失败原因。
-
-2.2 查看每个node是否都有发布msg
-
-根据launch文件中每个node配置的发布和订阅的topic名，使用ros2 topic echo（仅对Ubuntu系统有效）命令显示每个topic是否有消息发布，如果无，再确认没有发布的原因。
-
-注意！如果运行ros2 topic命令失败，执行命令安装依赖：`pip3 install netifaces`
-
-3.无法打开音频设备
-
-3.1 确认音频设备接线是否正常
-
-3.2 确认是否加载音频驱动
+- 确认音频设备连接是否正常
+- 确认是否加载音频驱动
+- 确认加载音频驱动前是否已有音频设备连接
