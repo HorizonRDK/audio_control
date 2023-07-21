@@ -4,7 +4,7 @@
 
 流程如下图：
 
-![](./_static/_images/audio/audio_control.jpg)
+![audio_control](./imgs/audio_control.jpg)
 
 该应用可以使用PC端Gazebo仿真环境下的虚拟小车运行，也可以直接用于控制实物小车。
 
@@ -52,39 +52,39 @@ sudo apt install -y tros-audio-control
 
 ### 运行语音控制小车运动功能
 
-**1.启动机器人底盘**
+**1. 启动机器人底盘**
 
-启动机器人，如OriginBot的启动命令如下：
+   启动机器人，如OriginBot的启动命令如下：
 
-```bash
-source /opt/tros/setup.bash
-ros2 launch originbot_base robot.launch.py 
-```
+   ```bash
+   source /opt/tros/setup.bash
+   ros2 launch originbot_base robot.launch.py 
+   ```
 
-**2.启动语音控制**
+**2. 启动语音控制**
 
-启动一个新的终端，通过如下指令启动功能：
+   启动一个新的终端，通过如下指令启动功能：
 
-```shell
-# 配置tros.n环境
-source /opt/tros/setup.bash
+   ```shell
+   # 配置tros.n环境
+   source /opt/tros/setup.bash
 
-# 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/hobot_audio/config/ .
+   # 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
+   cp -r /opt/tros/lib/hobot_audio/config/ .
 
-# 加载音频驱动，设备启动之后只需要加载一次
-bash config/audio.sh
+   # 加载音频驱动，设备启动之后只需要加载一次
+   bash config/audio.sh
 
-# 屏蔽调式打印信息
-export GLOG_minloglevel=3
+   # 屏蔽调式打印信息
+   export GLOG_minloglevel=3
 
-# 启动launch文件
-ros2 launch audio_control audio_control.launch.py
-```
+   # 启动launch文件
+   ros2 launch audio_control audio_control.launch.py
+   ```
 
-启动成功后，当用户说出 "*向前走*" "*向后退*" "*向左转*" "*向右转*" "*停止运动*" 等指令后，机器人按照指令开始运动。
+   启动成功后，当用户说出 "*向前走*" "*向后退*" "*向左转*" "*向右转*" "*停止运动*" 等指令后，机器人按照指令开始运动。
 
-3. 结果分析
+**3. 结果分析**
 
    地平线RDK运行终端输出如下信息：
 
@@ -152,42 +152,42 @@ sudo apt install -y tros-audio-control
 
 **1.启动仿真环境及机器人**
 
-在PC端Ubuntu的终端中使用如下命令启动Gazebo，并加载机器人模型：
+   在PC端Ubuntu的终端中使用如下命令启动Gazebo，并加载机器人模型：
 
-```shell
-source /opt/ros/foxy/setup.bash
-export TURTLEBOT3_MODEL=burger
-ros2 launch turtlebot3_gazebo empty_world.launch.py
-```
+   ```shell
+   source /opt/ros/foxy/setup.bash
+   export TURTLEBOT3_MODEL=burger
+   ros2 launch turtlebot3_gazebo empty_world.launch.py
+   ```
 
-启动成功后，仿真环境中小车效果如下：
+   启动成功后，仿真环境中小车效果如下：
 
-![](./_static/_images/audio/gazebo.jpeg)
+   ![gazebo](./imgs/gazebo.jpeg)
 
 **2.启动语音控制**
 
-启动一个新的终端，通过如下指令启动功能：
+   启动一个新的终端，通过如下指令启动功能：
 
-```shell
-# 配置tros.n环境
-source /opt/tros/setup.bash
+   ```shell
+   # 配置tros.n环境
+   source /opt/tros/setup.bash
 
-# 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
-cp -r /opt/tros/lib/hobot_audio/config/ .
+   # 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
+   cp -r /opt/tros/lib/hobot_audio/config/ .
 
-# 加载音频驱动，设备启动之后只需要加载一次
-bash config/audio.sh
+   # 加载音频驱动，设备启动之后只需要加载一次
+   bash config/audio.sh
 
-# 屏蔽调式打印信息
-export GLOG_minloglevel=3
+   # 屏蔽调式打印信息
+   export GLOG_minloglevel=3
 
-# 启动launch文件
-ros2 launch audio_control audio_control.launch.py
-```
+   # 启动launch文件
+   ros2 launch audio_control audio_control.launch.py
+   ```
 
-启动成功后，当用户说出 "*向前走*" "*向后退*" "*向左转*" "*向右转*" "*停止运动*" 等指令后，小车按照指令开始运动。
+   启动成功后，当用户说出 "*向前走*" "*向后退*" "*向左转*" "*向右转*" "*停止运动*" 等指令后，小车按照指令开始运动。
 
-PC端仿真环境中语音追踪控制小车运动，效果如下[点击跳转](https://developer.horizon.ai/api/v1/fileData/documents_tros/app/car_audio_control.html)
+   PC端仿真环境中语音追踪控制小车运动，效果如下[点击跳转](https://developer.horizon.ai/api/v1/fileData/documents_tros/app/car_audio_control.html)
 
 # 接口说明
 
