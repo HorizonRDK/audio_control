@@ -35,7 +35,7 @@
 
 ### 安装功能包
 
-**1.参考[OriginBot说明](https://github.com/nodehubs/originbot_minimal/blob/develop/README.md)，完成Originbit基础功能安装**
+**1.参考[OriginBot说明](https://github.com/nodehubs/originbot_minimal/blob/develop/README.md)，完成Originbot基础功能安装**
 
 **2.安装功能包**
 
