@@ -68,9 +68,6 @@ sudo apt install -y tros-audio-control
    # 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
    cp -r /opt/tros/lib/hobot_audio/config/ .
 
-   # 加载音频驱动，设备启动之后只需要加载一次
-   bash config/audio.sh
-
    # 屏蔽调式打印信息
    export GLOG_minloglevel=3
 
@@ -169,9 +166,6 @@ sudo apt install -y tros-audio-control
    # 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
    cp -r /opt/tros/lib/hobot_audio/config/ .
 
-   # 加载音频驱动，设备启动之后只需要加载一次
-   bash config/audio.sh
-
    # 屏蔽调式打印信息
    export GLOG_minloglevel=3
 
@@ -235,5 +229,5 @@ sudo apt install -y tros-audio-control
 2. 无法打开音频设备
 
    - 确认音频设备连接是否正常
-   - 确认是否加载音频驱动
+   - 确认是否正确配置音频设备
    - 确认加载音频驱动前是否已有音频设备连接
