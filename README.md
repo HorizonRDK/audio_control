@@ -66,7 +66,7 @@ sudo apt install -y tros-audio-control
    source /opt/tros/setup.bash
 
    # 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
-   cp -r /opt/tros/lib/hobot_audio/config/ .
+   cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
 
    # 屏蔽调式打印信息
    export GLOG_minloglevel=3
@@ -164,7 +164,7 @@ sudo apt install -y tros-audio-control
    source /opt/tros/setup.bash
 
    # 从地平线RDK的安装路径中拷贝出运行示例需要的配置文件。
-   cp -r /opt/tros/lib/hobot_audio/config/ .
+   cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
 
    # 屏蔽调式打印信息
    export GLOG_minloglevel=3
