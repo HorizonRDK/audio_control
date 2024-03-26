@@ -98,7 +98,9 @@ Audio control command word definitions are:
 ============================================
 ```
 
-The above log snippet captures the output of the audio control package after startup. The log content indicates that the wake-up word configured for this voice control module is "Hello Horizon", and the command words for controlling the robot's movement are: "go forward", "move backward", "turn left", "turn right".# Gazebo Simulation
+The above log snippet captures the output of the audio control package after startup. The log content indicates that the wake-up word configured for this voice control module is "Hello Horizon", and the command words for controlling the robot's movement are: "go forward", "move backward", "turn left", "turn right".
+
+# Gazebo Simulation
 
 Gazebo simulation is suitable for developers who have RDK X3 but do not have a physical robot to experience its functions.
 
@@ -144,10 +146,11 @@ sudo apt install -y tros-audio-control
 
    On the PC's Ubuntu terminal, use the following commands to start Gazebo and load the robot model:
 
-   ```shell
-   source /opt/ros/foxy/setup.bash
-   export TURTLEBOT3_MODEL=burger
-``````python
+```shell
+source /opt/ros/foxy/setup.bash
+export TURTLEBOT3_MODEL=burger
+```
+```
 ros2 launch turtlebot3_gazebo empty_world.launch.py
 ```
 
@@ -197,7 +200,7 @@ Voice-controlled car movement in the simulation environment on the PC looks like
 | motion_duration_seconds | int          | Duration for translation/rotation actions in seconds. Values less than or equal to 0 indicate no limits, and a stop command will be issued after the specified duration to prevent continuous movement of the robot. | No       | No limitations                                                                        | 0             |
 
 # References
-```# Frequently Asked Questions
+## Frequently Asked Questions
 
 1. Error when running startup command on Ubuntu `-bash: ros2: command not found`
 
