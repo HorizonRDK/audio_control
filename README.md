@@ -43,9 +43,16 @@ The following operation process is based on the OriginBot, and the methods for o
 
 After starting the robot, connect to the robot via SSH or VNC through the terminal, copy and run the following command on the RDK system to install the related Nodes.
 
+tros foxy:
 ```bash
 sudo apt update
 sudo apt install -y tros-audio-control
+```
+
+tros humble:
+```bash
+sudo apt update
+sudo apt install -y tros-humble-audio-control
 ```
 
 ### Running Voice-controlled Car Motion Function
@@ -54,8 +61,15 @@ sudo apt install -y tros-audio-control
 
 Start the robot with the following command for OriginBot:
 
+tros foxy:
 ```bash
 source /opt/tros/setup.bash
+ros2 launch originbot_base robot.launch.py
+```
+
+tros humble:
+```bash
+source /opt/tros/humble/setup.bash
 ros2 launch originbot_base robot.launch.py
 ```
 
@@ -63,9 +77,25 @@ ros2 launch originbot_base robot.launch.py
 
 Start a new terminal and launch the function with the following commands:
 
+tros foxy:
 ```shell
 # Set up the tros.n environment
 source /opt/tros/setup.bash
+
+# Copy the configuration files required for running examples from the Horizon RDK installation path.
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
+
+# Suppress debug printing information
+export GLOG_minloglevel=3
+
+# Launch the launch file
+ros2 launch audio_control audio_control.launch.py
+```
+
+tros humble:
+```shell
+# Set up the tros.b humble environment
+source /opt/tros/humble/setup.bash
 
 # Copy the configuration files required for running examples from the Horizon RDK installation path.
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
@@ -119,6 +149,7 @@ Gazebo simulation is suitable for developers who have RDK X3 but do not have a p
 2. The ROS Gazebo and Turtlebot robot-related function packages have been installed on the PC.
 3. The PC is on the same network segment as the Horizon RDK (wired or connected to the same wireless network, the first three segments of the IP address must be consistent). The required environment for the PC includes:
 
+tros foxy:
 - Ubuntu 20.04 system
 
 - [ROS2 Foxy Desktop version](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
@@ -131,13 +162,34 @@ Gazebo simulation is suitable for developers who have RDK X3 but do not have a p
    sudo apt install ros-foxy-turtlebot3-simulations
    ```
 
+tros humble:
+- Ubuntu 22.04 system
+
+- [ROS2 Humble Desktop version](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+
+- Gazebo and Turtlebot3 related function packages, installation method:
+
+   ```shell
+   sudo apt-get install ros-humble-gazebo-*
+   sudo apt install ros-humble-turtlebot3
+   sudo apt install ros-humble-turtlebot3-simulations
+   ```
+
+
 ### Package Installation
 
 After starting RDK X3, connect to the robot via SSH or VNC from the terminal and run the following commands on the RDK system to install the related nodes.
 
+tros foxy:
 ```bash
 sudo apt update
 sudo apt install -y tros-audio-control
+```
+
+tros humble:
+```bash
+sudo apt update
+sudo apt install -y tros-humble-audio-control
 ```
 
 ### Running Functions
@@ -146,10 +198,17 @@ sudo apt install -y tros-audio-control
 
    On the PC's Ubuntu terminal, use the following commands to start Gazebo and load the robot model:
 
+tros foxy:
 ```shell
 source /opt/ros/foxy/setup.bash
 export TURTLEBOT3_MODEL=burger
 ```
+tros humble:
+```shell
+source /opt/ros/humble/setup.bash
+export TURTLEBOT3_MODEL=burger
+```
+
 ```
 ros2 launch turtlebot3_gazebo empty_world.launch.py
 ```
@@ -162,9 +221,25 @@ Upon successful launch, the simulated car in the environment looks as follows:
 
 Launch a new terminal and start the functionality with the following commands:
 
+tros foxy:
 ```shell
 # Set up tros.n environment
 source /opt/tros/setup.bash
+
+# Copy the required configuration files from the installation path of Horizon RDK
+cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
+
+# Disable debug print information
+export GLOG_minloglevel=3
+
+# Launch the launch file
+ros2 launch audio_control audio_control.launch.py
+```
+
+tros humble:
+```shell
+# Set up tros.b humble environment
+source /opt/tros/humble/setup.bash
 
 # Copy the required configuration files from the installation path of Horizon RDK
 cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
@@ -206,8 +281,14 @@ Voice-controlled car movement in the simulation environment on the PC looks like
 
    The current terminal is not set up with ROS2 environment. Execute the following command to set up the environment:
 
+   tros foxy:
    ```bash
    source /opt/tros/setup.bash
+   ```
+
+   tros humble:
+   ```bash
+   source /opt/tros/humble/setup.bash
    ```
 
    Execute the `ros2` command in the current terminal to confirm if the environment is active:
